@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EPS Endurance</title>
+<script type="text/javascript" nonce="d882dcf1f31a4a9fb13e5d69d9c" src="//local.adguard.org?ts=1778878961383&amp;type=content-script&amp;dmn=mail-attachment.googleusercontent.com&amp;url=https%3A%2F%2Fmail-attachment.googleusercontent.com%2Fattachment%2Fu%2F0%2F%3Fui%3D2%26ik%3De0392e50b5%26attid%3D0.1%26permmsgid%3Dmsg-a%3Ar2830800009093588135%26th%3D19e2d7ad7b6e16cc%26view%3Datt%26disp%3Dsafe%26realattid%3D19e2d7a76e674909bd31%26zw%26saddbat%3DANGjdJ8tF7xduDG6ZaPezQ2QEoo3A5hJQx8j0rXFAmU6vmjoC7Lx6OpBaFLtXwtqV_k9pFXFGt92NvthsGJ2o9-EJn_EDIllze4Zj3wYumxqOJuHauNW2HCOND73Wg69h7qJKVZHSO8zobEdojQVZitZ5T7nbLHNchvd6zKkO2Javujz25aCPrGWf9loeFWS1a3-TOPXOqKzK5oX-cCobKX9j3RPXHZmzLK0UO-jPlBaLuNx5CSMfHZAo3v8gCyfJkNFzwbfhQY9Pjeuw22iC7fLquqkvM61r7HDLBPGBLW-2KE2FMukyEJe-28BRZxbzgKa3bYw5X9FhdBnBcuIxcipob0y0m_nAfNb4dkaf8ngdryH7zqo3BefTTzc5bCSAPmfJlMiEp0Wx3412qlIgRTbTGL9-Tv40UeX7jFxsFfCRa1q4SYH6WquBhpI5jq9YAPvyR6lNcJyvvkqtD-ItgOPPKL3hFsAxUqnYr4QHbtDvJzuCbuTkMVho5dUTNnmR2V-m_4vmhruHA15qJo0xebsvQZb5RWZw63Ms7iwl0KgjCdaCPDW5lMruGv1XINXCPld1ZeFT6PvFZdCYCyvwfMazA6qqizeWdrK9pIkHWQkcG9ZenfAjubTdjQVt8OKuEGwxjztcgpNYb0Yr1eAaPkWfTydPg6K31K9tDnNnMVSq5Wkl72HR8e1urI7cMAF0i-jChxzZKlkBQjShwriSMFBaKh9sevTkZz9X6U4QX6UPPAqOO_J02qcqky4xqS7S1G-1Sm--DqvpdOdsLrmtrvfuO-Wq1UlvJGfyyhVC0fPZ3K6plQhQ48KejjV_kq4eSvsK44oVrhFnrcVcbVWyNzf6nOtspeLDyD45HfORlC-p56s4s8O7DcnSBoh_h2ZvljFo1G9wCHldxGPFgz4tOLLcxc4ujCcLRWXm0rJh8JzcsG-Pg4RcUnGLPxPfmhWYU6gW6WtwS8M2nm3ahBpMsHwnw8Li7EncKg5o5WxCood167xZ0lslvdD4yhuLpdFAKzpapQNYcg4xSXdVpr0&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-dnt"></script><script type="text/javascript" nonce="d882dcf1f31a4a9fb13e5d69d9c" src="//local.adguard.org?ts=1778878961383&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --bg:#0f1117; --surface:#181c26; --surface2:#1e2333; --border:#2a3050;
+  --accent:#f0c040; --accent2:#40c0f0; --text:#e8eaf0; --text2:#8a90a8;
+  --red:#f04060; --green:#40d080; --r:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;}
+header{background:linear-gradient(135deg,#1a1f30,#0f1117);border-bottom:2px solid var(--accent);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+header h1{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;color:var(--accent);}
+.meta-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.meta-row label{font-size:.78rem;color:var(--text2);}
+.meta-row input{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:5px 10px;font-family:'DM Sans',sans-serif;font-size:.85rem;}
+.tabs{display:flex;background:var(--surface);border-bottom:2px solid var(--border);}
+.tab{padding:12px 20px;background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab:hover:not(.active){color:var(--text);}
+.page{display:none;padding:20px;}
+.page.active{display:block;}
+.card{background:var(--surface2);border:2px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:16px;}
+.card-title{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:1.05rem;color:var(--text2);margin-bottom:14px;}
+.btn{border:none;border-radius:8px;padding:9px 18px;font-family:'DM Sans',sans-serif;font-weight:700;cursor:pointer;font-size:.88rem;transition:all .15s;}
+.btn:hover{opacity:.85;transform:translateY(-1px);}
+.btn-yellow{background:var(--accent);color:#000;}
+.btn-green{background:var(--green);color:#000;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-blue{background:var(--accent2);color:#000;}
+.btn-ghost{background:none;border:1px solid var(--border);color:var(--text2);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-sm{padding:5px 12px;font-size:.8rem;}
+.btn-lg{padding:13px 28px;font-size:1rem;}
+.groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px;}
+.group-card{background:var(--surface2);border:2px solid var(--border);border-radius:var(--r);padding:14px;}
+.group-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.cdot{width:22px;height:22px;border-radius:50%;border:3px solid rgba(255,255,255,.15);flex-shrink:0;}
+.gname{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;}
+.gcnt{font-size:.78rem;color:var(--text2);margin-left:auto;}
+.students{display:flex;flex-wrap:wrap;gap:6px;min-height:28px;}
+.stag{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:.78rem;display:flex;align-items:center;gap:5px;}
+.stag button{background:none;border:none;color:var(--text2);cursor:pointer;font-size:.95rem;line-height:1;padding:0;}
+.stag button:hover{color:var(--red);}
+.add-row{display:flex;gap:8px;margin-top:10px;}
+.add-row input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 10px;font-size:.83rem;font-family:'DM Sans',sans-serif;}
+.chrono-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:18px;}
+@media(max-width:680px){.chrono-wrap{grid-template-columns:1fr;}}
+.chrono-display{font-family:'JetBrains Mono',monospace;font-size:3.2rem;font-weight:700;color:var(--accent);letter-spacing:4px;margin:8px 0;text-align:center;text-shadow:0 0 30px rgba(240,192,64,.3);}
+.chrono-display.cd{color:var(--accent2);text-shadow:0 0 30px rgba(64,192,240,.3);}
+.chrono-display.warn{color:var(--red);text-shadow:0 0 30px rgba(240,64,96,.4);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.mode-row{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+.mbtn{padding:6px 16px;border-radius:20px;border:2px solid var(--border);background:none;color:var(--text2);cursor:pointer;font-size:.83rem;font-weight:600;transition:all .2s;}
+.mbtn.active{border-color:var(--accent);color:var(--accent);background:rgba(240,192,64,.08);}
+.cd-setup{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap;font-size:.85rem;color:var(--text2);}
+.cd-setup input{width:62px;text-align:center;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:5px;font-family:'JetBrains Mono',monospace;}
+.ctrl-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+.save-bar{background:rgba(240,192,64,.08);border:2px dashed var(--accent);border-radius:var(--r);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;}
+.save-bar p{font-size:.88rem;color:var(--accent);}
+.lap-group-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;flex-wrap:wrap;margin-bottom:8px;transition:background .3s,border-color .3s;}
+.lap-group-row .dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;}
+.lap-group-row .gn{font-weight:700;font-size:.92rem;min-width:85px;}
+.lap-stats{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--text2);flex:1;}
+.lap-stats span{margin-right:10px;}
+.btn-tour{border:2px solid currentColor;background:transparent;border-radius:8px;padding:7px 14px;font-weight:700;cursor:pointer;font-size:.88rem;transition:all .15s;white-space:nowrap;}
+.btn-tour:hover{opacity:.85;transform:scale(1.04);}
+.btn-tour:active{transform:scale(.96);}
+.lap-hist-hdr{display:flex;gap:8px;color:var(--text2);font-size:.72rem;padding:5px 8px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;}
+.lap-row{display:flex;gap:8px;align-items:center;padding:5px 8px;border-bottom:1px solid var(--border);font-size:.79rem;font-family:'JetBrains Mono',monospace;}
+.lap-row .ld{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.lap-row .ln{width:82px;}
+.lap-row .lt{width:36px;color:var(--text2);}
+.lap-row .lms{width:74px;}
+.lap-row .lv{color:var(--accent2);min-width:76px;}
+.lap-row .ldist{color:var(--green);}
+.archive-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;}
+.arc-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px;}
+.arc-date{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--accent);letter-spacing:2px;}
+.arc-meta{flex:1;font-size:.84rem;color:var(--text2);}
+.arc-meta b{color:var(--text);}
+.arc-summary{font-size:.82rem;color:var(--text2);margin-bottom:14px;line-height:1.8;}
+.export-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;max-width:420px;width:90%;}
+.modal h2{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:1.4rem;margin-bottom:16px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:.8rem;color:var(--text2);margin-bottom:5px;}
+.field input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 18px;font-size:.87rem;z-index:999;transition:transform .28s;white-space:nowrap;pointer-events:none;}
+#toast.show{transform:translateX(-50%) translateY(0);}
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:3px;color:var(--text2);}
+.empty-msg{color:var(--text2);padding:32px 0;text-align:center;font-size:.9rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⏱ EPS Endurance</h1>
+  <div class="meta-row">
+    <label>Classe</label>
+    <input id="hClasse" type="text" placeholder="4ème B" style="width:90px"/>
+    <label>Date</label>
+    <input id="hDate" type="date"/>
+    <label>Tour (m)</label>
+    <input id="hLapDist" type="number" value="200" min="10" style="width:70px"/>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showPage('groupes',this)">👥 Groupes</button>
+  <button class="tab" onclick="showPage('chrono',this)">⏱ Chrono &amp; Tours</button>
+  <button class="tab" onclick="showPage('archives',this)">📁 Archives</button>
+</div>
+
+<!-- PAGE GROUPES -->
+<div id="page-groupes" class="page active">
+  <div class="top-bar">
+    <div class="section-title">Groupes de course</div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-ghost btn-sm" onclick="deleteAllGroups()">🗑 Tout supprimer</button>
+      <button class="btn btn-yellow btn-sm" onclick="openAddGroup()">+ Nouveau groupe</button>
+    </div>
+  </div>
+  <div class="groups-grid" id="groupsGrid"></div>
+</div>
+
+<!-- PAGE CHRONO -->
+<div id="page-chrono" class="page">
+  <div class="save-bar">
+    <p>💾 Séance terminée ? Sauvegarde-la pour l'archiver et l'exporter.</p>
+    <button class="btn btn-yellow btn-lg" onclick="saveSession()">💾 Sauvegarder la séance</button>
+  </div>
+  <div class="chrono-wrap">
+    <div>
+      <div class="card">
+        <div class="mode-row">
+          <button class="mbtn active" id="mNormal" onclick="setMode('normal')">⏱ Normal</button>
+          <button class="mbtn" id="mDecompte" onclick="setMode('decompte')">⏳ Décompte</button>
+        </div>
+        <div class="cd-setup" id="cdSetup" style="display:none">
+          Durée :
+          <input id="cdMin" type="number" value="10" min="0" max="99"/> min
+          <input id="cdSec" type="number" value="0" min="0" max="59"/> sec
+        </div>
+        <div class="chrono-display" id="chronoDisplay">00:00:00</div>
+        <div class="ctrl-row">
+          <button class="btn btn-green btn-lg" id="btnStart" onclick="startChrono()">▶ Démarrer</button>
+          <button class="btn btn-red btn-lg" id="btnStop" onclick="stopChrono()" style="display:none">⏸ Pause</button>
+          <button class="btn btn-ghost" onclick="resetChrono()">↺ Reset</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Résumé en cours</div>
+        <div id="sessionSummary" style="font-size:.84rem;color:var(--text2)">Lance le chrono et enregistre des tours.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Enregistrement des tours</div>
+      <div id="lapGroupsArea"></div>
+      <div style="margin-top:12px;">
+        <div class="lap-hist-hdr">
+          <span style="width:10px"></span>
+          <span style="width:82px">Groupe</span>
+          <span style="width:36px">Tour</span>
+          <span style="width:74px">Temps</span>
+          <span style="min-width:76px">Vitesse</span>
+          <span>Dist. tot.</span>
+        </div>
+        <div id="lapRows"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE ARCHIVES -->
+<div id="page-archives" class="page">
+  <div class="top-bar">
+    <div class="section-title">Archives des séances</div>
+    <button class="btn btn-red btn-sm" onclick="clearArchives()">🗑 Tout supprimer</button>
+  </div>
+  <div id="archiveList"></div>
+</div>
+
+<!-- MODAL GROUPE -->
+<div class="overlay" id="modalGroupe">
+  <div class="modal">
+    <h2>Nouveau groupe</h2>
+    <div class="field">
+      <label>Nom du groupe</label>
+      <input id="newName" type="text" placeholder="ex : Groupe Rouge" onkeydown="if(event.key==='Enter')addGroup()"/>
+    </div>
+    <div class="field">
+      <label>Couleur</label>
+      <input id="newColor" type="color" value="#e84040" style="width:60px;height:40px;border:none;border-radius:8px;cursor:pointer;background:none;padding:0;"/>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:6px;">
+      <button class="btn btn-yellow" style="flex:1" onclick="addGroup()">Créer</button>
+      <button class="btn btn-ghost" style="flex:1" onclick="closeModal()">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let groups   = JSON.parse(localStorage.getItem('eps_groups')   || 'null') || [];
+let archives = JSON.parse(localStorage.getItem('eps_archives') || 'null') || [];
+
+if (!localStorage.getItem('eps_v3')) {
+  groups = [];
+  localStorage.removeItem('eps_groups');
+  localStorage.setItem('eps_v3','1');
+  saveGroups();
+}
+
+let nextId = groups.length ? Math.max(...groups.map(g=>g.id))+1 : 1;
+let laps = [], lapCounts = {}, lapLastT = {};
+let iv=null, chronoStart=null, elapsed=0, running=false, mode='normal', cdTotal=0;
+
+window.onload = () => {
+  document.getElementById('hDate').value = new Date().toISOString().split('T')[0];
+  renderGroups(); renderLapGroups(); renderArchives();
+};
+
+function showPage(name,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='chrono') renderLapGroups();
+  if(name==='archives') renderArchives();
+}
+
+function saveGroups(){ localStorage.setItem('eps_groups',JSON.stringify(groups)); }
+
+function renderGroups(){
+  const grid=document.getElementById('groupsGrid');
+  if(!groups.length){
+    grid.innerHTML='<div class="empty-msg" style="grid-column:1/-1">Aucun groupe.<br><small style="opacity:.6">Clique sur <b style="color:var(--accent)">+ Nouveau groupe</b> pour commencer.</small></div>';
+    return;
+  }
+  grid.innerHTML='';
+  groups.forEach(g=>{
+    const d=document.createElement('div'); d.className='group-card';
+    d.innerHTML=`
+      <div class="group-header">
+        <div class="cdot" style="background:${g.color}"></div>
+        <span class="gname" style="color:${g.color}">${g.name}</span>
+        <span class="gcnt">${g.students.length} élève${g.students.length!==1?'s':''}</span>
+        <button class="btn btn-red btn-sm" style="margin-left:4px" onclick="deleteGroup(${g.id})">✕</button>
+      </div>
+      <div class="students" id="sl-${g.id}">
+        ${g.students.map(s=>`<span class="stag">${s}<button onclick="removeStudent(${g.id},'${s.replace(/'/g,"\\'")}')">×</button></span>`).join('')}
+      </div>
+      <div class="add-row">
+        <input type="text" placeholder="Prénom Nom" id="inp-${g.id}" onkeydown="if(event.key==='Enter')addStudent(${g.id})"/>
+        <button class="btn btn-yellow btn-sm" onclick="addStudent(${g.id})">+</button>
+      </div>`;
+    grid.appendChild(d);
+  });
+}
+
+function openAddGroup(){
+  document.getElementById('newName').value='';
+  document.getElementById('modalGroupe').classList.add('open');
+  setTimeout(()=>document.getElementById('newName').focus(),100);
+}
+function closeModal(){ document.getElementById('modalGroupe').classList.remove('open'); }
+
+function addGroup(){
+  const name=document.getElementById('newName').value.trim();
+  const color=document.getElementById('newColor').value;
+  if(!name){toast('Saisis un nom');return;}
+  groups.push({id:nextId++,name,color,students:[]});
+  saveGroups(); renderGroups(); renderLapGroups();
+  closeModal(); toast('Groupe "'+name+'" créé');
+}
+
+function deleteGroup(id){
+  if(!confirm('Supprimer ce groupe ?')) return;
+  groups=groups.filter(g=>g.id!==id);
+  saveGroups(); renderGroups(); renderLapGroups();
+}
+
+function deleteAllGroups(){
+  if(!confirm('Supprimer tous les groupes ?')) return;
+  groups=[]; saveGroups(); renderGroups(); renderLapGroups();
+}
+
+function addStudent(gid){
+  const inp=document.getElementById('inp-'+gid);
+  const name=inp.value.trim(); if(!name) return;
+  const g=groups.find(x=>x.id===gid);
+  if(g&&!g.students.includes(name)){g.students.push(name);saveGroups();renderGroups();renderLapGroups();}
+  inp.value='';
+}
+
+function removeStudent(gid,name){
+  const g=groups.find(x=>x.id===gid);
+  if(g){g.students=g.students.filter(s=>s!==name);saveGroups();renderGroups();}
+}
+
+function setMode(m){
+  mode=m; resetChrono();
+  document.getElementById('mNormal').classList.toggle('active',m==='normal');
+  document.getElementById('mDecompte').classList.toggle('active',m==='decompte');
+  document.getElementById('cdSetup').style.display=m==='decompte'?'flex':'none';
+  document.getElementById('chronoDisplay').className='chrono-display'+(m==='decompte'?' cd':'');
+}
+
+function startChrono(){
+  if(running) return;
+  if(mode==='decompte'&&elapsed===0){
+    const mn=parseInt(document.getElementById('cdMin').value)||0;
+    const sc=parseInt(document.getElementById('cdSec').value)||0;
+    cdTotal=(mn*60+sc)*1000;
+    if(cdTotal<=0){toast('Durée invalide');return;}
+  }
+  running=true; chronoStart=Date.now()-elapsed;
+  document.getElementById('btnStart').style.display='none';
+  document.getElementById('btnStop').style.display='';
+  iv=setInterval(tick,100);
+}
+
+function stopChrono(){
+  if(!running) return;
+  running=false; elapsed=Date.now()-chronoStart;
+  clearInterval(iv);
+  document.getElementById('btnStart').style.display='';
+  document.getElementById('btnStop').style.display='none';
+  document.getElementById('btnStart').textContent='▶ Reprendre';
+}
+
+function resetChrono(){
+  clearInterval(iv); running=false; elapsed=0; chronoStart=null;
+  document.getElementById('btnStart').style.display='';
+  document.getElementById('btnStop').style.display='none';
+  document.getElementById('btnStart').textContent='▶ Démarrer';
+  const isCd=mode==='decompte';
+  const cdMs=isCd?((parseInt(document.getElementById('cdMin').value)||0)*60000+(parseInt(document.getElementById('cdSec').value)||0)*1000):0;
+  document.getElementById('chronoDisplay').textContent=fmtTime(isCd?cdMs:0);
+  document.getElementById('chronoDisplay').className='chrono-display'+(isCd?' cd':'');
+  laps=[]; lapCounts={}; lapLastT={};
+  document.getElementById('lapRows').innerHTML='';
+  renderLapGroups(); updateSummary();
+}
+
+function tick(){
+  const e=Date.now()-chronoStart;
+  let disp,cls='chrono-display';
+  if(mode==='normal'){disp=fmtTime(e);}
+  else{
+    const rem=Math.max(0,cdTotal-e); disp=fmtTime(rem);
+    cls+=rem<=30000?' warn':' cd';
+    if(rem===0){stopChrono();toast('⏰ Temps écoulé !');}
+  }
+  document.getElementById('chronoDisplay').textContent=disp;
+  document.getElementById('chronoDisplay').className=cls;
+}
+
+function nowMs(){return chronoStart?Date.now()-chronoStart:elapsed;}
+function fmtTime(ms){const t=Math.floor(ms/1000);return pad(Math.floor(t/3600))+':'+pad(Math.floor((t%3600)/60))+':'+pad(t%60);}
+function fmtMs(ms){const t=Math.floor(ms/1000);return pad(Math.floor(t/60))+':'+pad(t%60)+'.'+pad(Math.floor((ms%1000)/10));}
+function pad(n){return String(n).padStart(2,'0');}
+
+function renderLapGroups(){
+  const area=document.getElementById('lapGroupsArea');
+  area.innerHTML='';
+  if(!groups.length){
+    area.innerHTML='<div style="color:var(--text2);font-size:.85rem;padding:10px 0">Crée des groupes dans l\'onglet Groupes.</div>';
+    return;
+  }
+  groups.forEach(g=>{
+    const tours=lapCounts[g.id]||0;
+    const dist=tours*(parseInt(document.getElementById('hLapDist').value)||200);
+    const avg=getAvg(g.id);
+    const row=document.createElement('div'); row.className='lap-group-row'; row.id='lgr-'+g.id;
+    row.innerHTML=`
+      <div class="dot" style="background:${g.color}"></div>
+      <div class="gn" style="color:${g.color}">${g.name}</div>
+      <div class="lap-stats">
+        <span>Tours: <b>${tours}</b></span>
+        <span>Dist: <b>${dist}m</b></span>
+        <span>V.moy: <b>${avg} km/h</b></span>
+      </div>
+      <button class="btn-tour" style="color:${g.color}" onclick="recordLap(${g.id})">+ Tour</button>`;
+    area.appendChild(row);
+  });
+}
+
+function recordLap(gid){
+  if(!running&&elapsed===0){toast('⚠ Lance le chrono d\'abord !');return;}
+  const now=nowMs();
+  const g=groups.find(x=>x.id===gid); if(!g) return;
+  const dist=parseInt(document.getElementById('hLapDist').value)||200;
+  lapCounts[gid]=(lapCounts[gid]||0)+1;
+  const tour=lapCounts[gid];
+  const last=lapLastT[gid]||0;
+  const lapTime=now-last; lapLastT[gid]=now;
+  const speed=lapTime>0?((dist/(lapTime/1000))*3.6).toFixed(2):'–';
+  const totalDist=tour*dist;
+  const avgSpd=now>0?((totalDist/(now/1000))*3.6).toFixed(2):'–';
+  laps.push({groupId:gid,groupName:g.name,groupColor:g.color,tour,lapTime,totalTime:now,speed,totalDist,avgSpeed:avgSpd});
+
+  const row=document.getElementById('lgr-'+gid);
+  if(row){row.style.background=g.color+'22';row.style.borderColor=g.color;setTimeout(()=>{row.style.background='';row.style.borderColor='';},500);}
+
+  const container=document.getElementById('lapRows');
+  const lr=document.createElement('div'); lr.className='lap-row';
+  lr.innerHTML=`<div class="ld" style="background:${g.color}"></div><div class="ln" style="color:${g.color}">${g.name}</div><div class="lt">#${tour}</div><div class="lms">${fmtMs(lapTime)}</div><div class="lv">${speed} km/h</div><div class="ldist">${totalDist}m</div>`;
+  container.insertBefore(lr,container.firstChild);
+
+  renderLapGroups(); updateSummary();
+  toast(g.name+' – Tour '+tour+' : '+fmtMs(lapTime)+' – '+speed+' km/h');
+}
+
+function getAvg(gid){
+  const gl=laps.filter(l=>l.groupId===gid);
+  return gl.length?gl[gl.length-1].avgSpeed:'–';
+}
+
+function updateSummary(){
+  const el=document.getElementById('sessionSummary');
+  if(!laps.length){el.textContent='Lance le chrono et enregistre des tours.';return;}
+  let html='<table style="width:100%;border-collapse:collapse">';
+  html+='<tr><th style="text-align:left;padding:3px 6px;color:var(--text2);font-size:.75rem">Groupe</th><th style="padding:3px 6px;color:var(--text2);font-size:.75rem">Tours</th><th style="padding:3px 6px;color:var(--text2);font-size:.75rem">Distance</th><th style="padding:3px 6px;color:var(--text2);font-size:.75rem">V. moy.</th></tr>';
+  groups.forEach(g=>{
+    const t=lapCounts[g.id]||0; if(!t) return;
+    const d=t*(parseInt(document.getElementById('hLapDist').value)||200);
+    html+=`<tr><td style="padding:3px 6px;color:${g.color};font-weight:700">${g.name}</td><td style="padding:3px 6px;text-align:center;font-family:'JetBrains Mono',monospace">${t}</td><td style="padding:3px 6px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">${d}m</td><td style="padding:3px 6px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--accent2)">${getAvg(g.id)} km/h</td></tr>`;
+  });
+  html+='</table>'; el.innerHTML=html;
+}
+
+function saveSession(){
+  const classe=document.getElementById('hClasse').value.trim();
+  const date=document.getElementById('hDate').value;
+  const lapDist=document.getElementById('hLapDist').value;
+  if(!laps.length){toast('⚠ Aucun tour enregistré');return;}
+  const session={
+    id:Date.now(),date,classe,lapDist,
+    laps:JSON.parse(JSON.stringify(laps)),
+    summary:groups.map(g=>({
+      id:g.id,name:g.name,color:g.color,
+      tours:lapCounts[g.id]||0,
+      totalDist:(lapCounts[g.id]||0)*(parseInt(lapDist)||200),
+      avgSpeed:getAvg(g.id),
+      students:[...g.students]
+    }))
+  };
+  archives.unshift(session);
+  localStorage.setItem('eps_archives',JSON.stringify(archives));
+  toast('✅ Séance sauvegardée ! Va dans Archives pour exporter.');
+  renderArchives();
+}
+
+function renderArchives(){
+  const el=document.getElementById('archiveList');
+  if(!archives.length){
+    el.innerHTML='<div class="empty-msg">Aucune séance archivée.<br><small style="opacity:.6">Sauvegarde une séance depuis l\'onglet Chrono &amp; Tours.</small></div>';
+    return;
+  }
+  el.innerHTML='';
+  archives.forEach((s,i)=>{
+    const totalTours=s.summary.reduce((a,g)=>a+g.tours,0);
+    const c=document.createElement('div'); c.className='archive-card';
+    const lines=s.summary.filter(g=>g.tours>0).map(g=>`<span style="color:${g.color};margin-right:14px">● ${g.name} : ${g.tours} tours — ${g.totalDist}m — moy. ${g.avgSpeed} km/h${g.students&&g.students.length?' ('+g.students.join(', ')+')':''}</span>`).join('<br>');
+    c.innerHTML=`
+      <div class="arc-head">
+        <div class="arc-date">${dateFr(s.date)}</div>
+        <div class="arc-meta"><b>${s.classe||'Sans classe'}</b> &nbsp;·&nbsp; ${totalTours} tours &nbsp;·&nbsp; ${s.lapDist}m/tour</div>
+        <button class="btn btn-red btn-sm" onclick="deleteArchive(${i})">✕ Supprimer</button>
+      </div>
+      <div class="arc-summary">${lines||'<span style="opacity:.5">Aucun tour enregistré.</span>'}</div>
+      <div class="export-btns">
+        <button class="btn btn-yellow" onclick="exportPDF(${i})">📄 Télécharger PDF</button>
+        <button class="btn btn-blue" onclick="exportWhatsApp(${i})">📱 Partager WhatsApp</button>
+        <button class="btn btn-ghost" onclick="exportEmail(${i})">📧 Envoyer par e-mail</button>
+      </div>`;
+    el.appendChild(c);
+  });
+}
+
+function deleteArchive(i){
+  if(!confirm('Supprimer cette séance ?')) return;
+  archives.splice(i,1);
+  localStorage.setItem('eps_archives',JSON.stringify(archives));
+  renderArchives();
+}
+
+function clearArchives(){
+  if(!confirm('Supprimer toutes les archives ?')) return;
+  archives=[]; localStorage.setItem('eps_archives',JSON.stringify(archives));
+  renderArchives();
+}
+
+function dateFr(d){if(!d)return'–';const[y,m,j]=d.split('-');return`${j}/${m}/${y}`;}
+
+function exportPDF(i){
+  const s=archives[i]; if(!s){toast('Données introuvables');return;}
+
+  // Construit le HTML du rapport groupé par couleur
+  const groupIds=[...new Set(s.laps.map(l=>l.groupId))];
+
+  let groupSections='';
+  groupIds.forEach(gid=>{
+    const grpLaps=s.laps.filter(l=>l.groupId===gid);
+    if(!grpLaps.length) return;
+    const grp=s.summary.find(g=>g.id===gid)||{name:'Groupe',color:'#888',students:[],tours:0,totalDist:0,avgSpeed:'-'};
+    const rows=grpLaps.map((l,idx)=>`
+      <tr style="background:${idx%2===0?'#f9f9f9':'#fff'}">
+        <td>#${l.tour}</td>
+        <td>${fmtMs(l.lapTime)}</td>
+        <td>${l.speed} km/h</td>
+        <td>${l.totalDist} m</td>
+        <td>${l.avgSpeed} km/h</td>
+      </tr>`).join('');
+    const eleves=(grp.students&&grp.students.length)?'<div style="font-size:12px;margin-top:4px;color:#555">Élèves : '+grp.students.join(', ')+'</div>':'';
+    groupSections+=`
+      <div style="margin-bottom:28px;break-inside:avoid">
+        <div style="background:${grp.color};color:#fff;padding:10px 14px;border-radius:6px 6px 0 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+          <div>
+            <span style="font-size:16px;font-weight:700;letter-spacing:1px">${grp.name}</span>
+            ${eleves}
+          </div>
+          <div style="font-size:13px;background:rgba(0,0,0,.25);padding:5px 12px;border-radius:20px">
+            ${grp.tours} tours &nbsp;·&nbsp; ${grp.totalDist}m &nbsp;·&nbsp; moy. ${grp.avgSpeed} km/h
+          </div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <thead>
+            <tr style="background:#eee;color:#333">
+              <th style="padding:7px 10px;text-align:left">Tour</th>
+              <th style="padding:7px 10px;text-align:left">Temps au tour</th>
+              <th style="padding:7px 10px;text-align:left">Vitesse tour</th>
+              <th style="padding:7px 10px;text-align:left">Distance cumulée</th>
+              <th style="padding:7px 10px;text-align:left">V. moy. cumulée</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  });
+
+  const resumeRows=s.summary.filter(g=>g.tours>0).map((g,idx)=>`
+    <tr style="background:${idx%2===0?'#f9f9f9':'#fff'}">
+      <td style="padding:6px 10px"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${g.color};margin-right:6px;vertical-align:middle"></span><b>${g.name}</b></td>
+      <td style="padding:6px 10px;text-align:center">${g.tours}</td>
+      <td style="padding:6px 10px;text-align:center">${g.totalDist} m</td>
+      <td style="padding:6px 10px;text-align:center">${g.avgSpeed} km/h</td>
+      <td style="padding:6px 10px">${(g.students||[]).join(', ')||'–'}</td>
+    </tr>`).join('');
+
+  const html=`<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"/>
+  <title>EPS Endurance – ${s.classe||''} – ${dateFr(s.date)}</title>
+  <style>
+    body{font-family:Arial,sans-serif;padding:24px;color:#222;max-width:900px;margin:0 auto;}
+    h1{color:#c8960a;font-size:22px;margin-bottom:4px;}
+    .meta{font-size:13px;color:#666;margin-bottom:20px;}
+    h2{font-size:15px;color:#444;margin:20px 0 8px;border-bottom:2px solid #eee;padding-bottom:4px;}
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    th{background:#ddd;padding:7px 10px;text-align:left;}
+    td{padding:6px 10px;border-bottom:1px solid #eee;}
+    @media print{body{padding:10px;} .no-print{display:none;}}
+  </style></head><body>
+  <div class="no-print" style="background:#fffbe6;border:1px solid #f0c040;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px">
+    📱 <b>Sur Android :</b> appuie sur le menu ⋮ de ton navigateur puis <b>Imprimer → Enregistrer en PDF</b>, ou <b>Partager</b> pour envoyer.
+  </div>
+  <h1>EPS – Séance Endurance</h1>
+  <div class="meta">Classe : <b>${s.classe||'–'}</b> &nbsp;·&nbsp; Date : <b>${dateFr(s.date)}</b> &nbsp;·&nbsp; Distance par tour : <b>${s.lapDist} m</b></div>
+  <h2>Résumé par groupe</h2>
+  <table>
+    <thead><tr><th>Groupe</th><th>Tours</th><th>Distance</th><th>V. moy.</th><th>Élèves</th></tr></thead>
+    <tbody>${resumeRows}</tbody>
+  </table>
+  <h2>Détail par groupe</h2>
+  ${groupSections}
+  <div style="font-size:11px;color:#aaa;margin-top:20px">Généré par EPS Endurance · ${new Date().toLocaleString('fr-FR')}</div>
+  </body></html>`;
+
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  window.open(url,'_blank');
+  toast('📄 Rapport ouvert – utilise Imprimer → PDF pour sauvegarder');
+}
+
+function exportWhatsApp(i){
+  const s=archives[i]; if(!s) return;
+  window.open('https://wa.me/?text='+encodeURIComponent(buildText(s)),'_blank');
+}
+
+function exportEmail(i){
+  const s=archives[i]; if(!s) return;
+  const sub=encodeURIComponent('EPS Endurance - '+(s.classe||'')+' - '+dateFr(s.date));
+  const body=encodeURIComponent(buildText(s));
+  window.location.href='mailto:?subject='+sub+'&body='+body;
+}
+
+function buildText(s){
+  let t='EPS - Seance Endurance\n';
+  t+='Classe : '+(s.classe||'-')+' | Date : '+dateFr(s.date)+' | Tour : '+s.lapDist+'m\n';
+  t+='========================================\n\n';
+
+  t+='RESUME PAR GROUPE :\n';
+  t+='----------------------------------------\n';
+  s.summary.filter(g=>g.tours>0).forEach(g=>{
+    t+='['+g.name+'] '+g.tours+' tours | '+g.totalDist+'m | moy. '+g.avgSpeed+' km/h';
+    if(g.students&&g.students.length) t+='\n  Eleves : '+g.students.join(', ');
+    t+='\n';
+  });
+
+  t+='\n========================================\n';
+  t+='DETAIL PAR GROUPE :\n';
+  const groupIds=[...new Set(s.laps.map(l=>l.groupId))];
+  groupIds.forEach(gid=>{
+    const grpLaps=s.laps.filter(l=>l.groupId===gid);
+    if(!grpLaps.length) return;
+    const grp=s.summary.find(g=>g.id===gid)||{name:'Groupe'};
+    t+='\n--- '+grp.name.toUpperCase()+' ---\n';
+    grpLaps.forEach(l=>{
+      t+='  Tour #'+l.tour+' : '+fmtMs(l.lapTime)+' | '+l.speed+' km/h | cumule '+l.totalDist+'m | v.moy '+l.avgSpeed+' km/h\n';
+    });
+  });
+  return t;
+}
+
+let toastT;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>
